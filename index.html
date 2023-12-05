@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Loop</title>
+    <style>
+        /* Additional styles if needed */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Adjust height as needed */
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe src="https://player.vimeo.com/video/891547035?h=fee940455f&amp;badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479" width="1024" height="1024" frameborder="0" allow="autoplay; fullscreen" loop="1" autoplay="1" title="6194 Dunkleosteus Terrelli Jaw and Hinged Head Motion"></iframe>
+    </div>
+
+    <script>
+        // JavaScript to attempt to reload the iframe when the video ends
+        // Note: This method may not work if the video hosting service does not support it
+        var videoFrame = document.getElementById('videoFrame');
+        videoFrame.onload = function() {
+            var videoContentWindow = videoFrame.contentWindow;
+
+            try {
+                videoContentWindow.onended = function() {
+                    videoFrame.src = videoFrame.src; // Reload the iframe source
+                };
+            } catch (error) {
+                console.error("Unable to bind to the video 'ended' event.");
+            }
+        };
+    </script>
+</body>
+</html>
